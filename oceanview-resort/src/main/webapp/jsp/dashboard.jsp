@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Ocean View Resort Dashboard</title>
+<head>
+<meta charset="UTF-8">
+<title>Ocean View Resort Dashboard</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+</head>
 </head>
 <body>
 

@@ -8,7 +8,26 @@
 </head>
 
 <body>
+<%
+String success = request.getParameter("success");
+String error = request.getParameter("error");
 
+if ("true".equals(success)) {
+%>
+    <script>
+        alert("Reservation confirmed successfully!");
+    </script>
+<%
+}
+
+if ("true".equals(error)) {
+%>
+    <script>
+        alert("Reservation failed. Please try again.");
+    </script>
+<%
+}
+%>
 
 <%
     if(session.getAttribute("user") == null){
@@ -22,10 +41,10 @@
 
 <ul>
 <li><a href="<%= request.getContextPath() %>/jsp/addReservation.jsp">Add Reservation</a></li>
-<li><a href="#">View Reservation</a></li>
+<li><a href="<%= request.getContextPath() %>/jsp/viewReservation.jsp"> View Reservation</a></li>
 <li><a href="#">Calculate Bill</a></li>
 <li><a href="#">Help</a></li>
-<li><a href="#">Exit System</a></li>
+<li><a href="#">Exit System</a></li>	
 </ul>
 
 </body>

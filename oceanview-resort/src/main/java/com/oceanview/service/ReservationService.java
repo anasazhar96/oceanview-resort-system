@@ -47,4 +47,14 @@ public class ReservationService {
 
         return reservationDAO.addReservation(reservation);
     }
+    
+    public Reservation getReservationByNumber(String reservationNo) {
+
+        if (reservationNo == null || reservationNo.trim().isEmpty()) {
+            return null;
+        }
+
+        return reservationDAO.getReservationByNumber(reservationNo);
+    }
 }
+

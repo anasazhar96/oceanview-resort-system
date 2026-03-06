@@ -33,4 +33,34 @@ public class ReservationDAO {
 
         return rowInserted;
     }
+    public Reservation getReservationByNumber(String reservationNo) {
+        Reservation reservation = null;
+
+        String sql = "SELECT * FROM reservations WHERE reservation_no = ?";
+
+        try (Connection con = DBConnection.getInstance().getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, reservationNo);
+
+            try (java.sql.ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    reservation = new Reservation();
+                    reservation.setReservationId(rs.getInt("reservation_id"));
+                    reservation.setReservationNo(rs.getString("reservation_no"));
+                    reservation.setGuestName(rs.getString("guest_name"));
+                    reservation.setAddress(rs.getString("address"));
+                    reservation.setContactNumber(rs.getString("contact_number"));
+                    reservation.setRoomType(rs.getString("room_type"));
+                    reservation.setCheckIn(rs.getDate("check_in"));
+                    reservation.setCheckOut(rs.getDate("check_out"));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return reservation;
+    }
 }

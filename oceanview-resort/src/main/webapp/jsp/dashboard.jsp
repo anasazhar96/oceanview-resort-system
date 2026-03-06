@@ -49,7 +49,7 @@
     <li><a href="<%= request.getContextPath() %>/jsp/viewReservation.jsp">View Reservation</a></li>
     <li><a href="<%= request.getContextPath() %>/jsp/calculateBill.jsp">Calculate Bill</a></li>
     <li><a href="<%= request.getContextPath() %>/viewAllReservations">View All Reservations</a></li>
-    <li><a href="#">Help</a></li>
+    <li><a href="help.jsp">Help</a></li>
     <li><a href="<%= request.getContextPath() %>/logout">Logout</a></li>
 </ul>
 

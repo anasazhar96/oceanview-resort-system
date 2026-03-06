@@ -1,1 +1,19 @@
-/target/
+# Maven build
+target/
+*.log
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+
+# Prevent accidental local folders
+Users/
+C:/

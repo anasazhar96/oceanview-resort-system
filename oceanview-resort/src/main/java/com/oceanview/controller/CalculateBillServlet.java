@@ -1,6 +1,7 @@
 package com.oceanview.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,13 +22,22 @@ public class CalculateBillServlet extends HttpServlet {
         String reservationNo = request.getParameter("reservationNo");
 
         ReservationService reservationService = new ReservationService();
-        Reservation reservation = reservationService.getReservationByNumber(reservationNo);
+        Map<String, Object> reservationData = reservationService.getReservationByNumber(reservationNo);
 
+        Reservation reservation = null;
         double totalBill = 0.0;
 
-        if (reservation != null) {
+        if (reservationData != null) {
+            reservation = (Reservation) reservationData.get("reservation");
+
             BillingService billingService = new BillingService();
             totalBill = billingService.calculateBill(reservation);
+
+            request.setAttribute("guestName", reservationData.get("guestName"));
+            request.setAttribute("address", reservationData.get("address"));
+            request.setAttribute("contactNumber", reservationData.get("contactNumber"));
+        } else {
+            request.setAttribute("errorMessage", "Reservation not found.");
         }
 
         request.setAttribute("reservation", reservation);

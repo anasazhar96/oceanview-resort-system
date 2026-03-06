@@ -10,8 +10,6 @@
     <h2>Add New Reservation</h2>
 
     <form action="<%= request.getContextPath() %>/addReservation" method="post">
-        <label>Reservation Number:</label><br>
-        <input type="text" name="reservationNo" required><br><br>
 
         <label>Guest Name:</label><br>
         <input type="text" name="guestName" required><br><br>

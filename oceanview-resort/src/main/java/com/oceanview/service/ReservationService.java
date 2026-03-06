@@ -1,5 +1,8 @@
 package com.oceanview.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.oceanview.dao.ReservationDAO;
 import com.oceanview.model.Reservation;
 
@@ -21,15 +24,7 @@ public class ReservationService {
             return false;
         }
 
-        if (reservation.getGuestName() == null || reservation.getGuestName().trim().isEmpty()) {
-            return false;
-        }
-
-        if (reservation.getAddress() == null || reservation.getAddress().trim().isEmpty()) {
-            return false;
-        }
-
-        if (reservation.getContactNumber() == null || reservation.getContactNumber().trim().isEmpty()) {
+        if (reservation.getGuestId() <= 0) {
             return false;
         }
 
@@ -47,8 +42,8 @@ public class ReservationService {
 
         return reservationDAO.addReservation(reservation);
     }
-    
-    public Reservation getReservationByNumber(String reservationNo) {
+
+    public Map<String, Object> getReservationByNumber(String reservationNo) {
 
         if (reservationNo == null || reservationNo.trim().isEmpty()) {
             return null;
@@ -56,5 +51,8 @@ public class ReservationService {
 
         return reservationDAO.getReservationByNumber(reservationNo);
     }
-}
 
+    public List<Map<String, Object>> getAllReservations() {
+        return reservationDAO.getAllReservations();
+    }
+}

@@ -6,15 +6,12 @@ public class Reservation {
 
     private int reservationId;
     private String reservationNo;
-    private String guestName;
-    private String address;
-    private String contactNumber;
+    private int guestId;
     private String roomType;
     private Date checkIn;
     private Date checkOut;
 
-    public Reservation() {
-    }
+    public Reservation() {}
 
     public int getReservationId() {
         return reservationId;
@@ -32,28 +29,12 @@ public class Reservation {
         this.reservationNo = reservationNo;
     }
 
-    public String getGuestName() {
-        return guestName;
+    public int getGuestId() {
+        return guestId;
     }
 
-    public void setGuestName(String guestName) {
-        this.guestName = guestName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getContactNumber() {
-        return contactNumber;
-    }
-
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setGuestId(int guestId) {
+        this.guestId = guestId;
     }
 
     public String getRoomType() {

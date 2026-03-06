@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.oceanview.model.Reservation" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,37 +11,39 @@
 <h2>Search Reservation</h2>
 
 <form action="<%= request.getContextPath() %>/viewReservation" method="get">
+    <label>Reservation Number:</label><br>
+    <input type="text" name="reservationNo" required><br><br>
 
-<%@ page import="com.oceanview.model.Reservation" %>
+    <button type="submit">Search</button>
+</form>
+
+<hr>
 
 <%
     Reservation reservation = (Reservation) request.getAttribute("reservation");
+    String guestName = (String) request.getAttribute("guestName");
+    String address = (String) request.getAttribute("address");
+    String contactNumber = (String) request.getAttribute("contactNumber");
+    String errorMessage = (String) request.getAttribute("errorMessage");
+
     if (reservation != null) {
 %>
     <h3>Reservation Details</h3>
     <p><strong>Reservation ID:</strong> <%= reservation.getReservationId() %></p>
     <p><strong>Reservation Number:</strong> <%= reservation.getReservationNo() %></p>
-    <p><strong>Guest Name:</strong> <%= reservation.getGuestName() %></p>
-    <p><strong>Address:</strong> <%= reservation.getAddress() %></p>
-    <p><strong>Contact Number:</strong> <%= reservation.getContactNumber() %></p>
+    <p><strong>Guest Name:</strong> <%= guestName %></p>
+    <p><strong>Address:</strong> <%= address %></p>
+    <p><strong>Contact Number:</strong> <%= contactNumber %></p>
     <p><strong>Room Type:</strong> <%= reservation.getRoomType() %></p>
     <p><strong>Check-In Date:</strong> <%= reservation.getCheckIn() %></p>
     <p><strong>Check-Out Date:</strong> <%= reservation.getCheckOut() %></p>
 <%
-    } else if (request.getParameter("reservationNo") != null) {
+    } else if (errorMessage != null) {
 %>
-    <p style="color:red;">No reservation found for the given reservation number.</p>
+    <p style="color:red;"><%= errorMessage %></p>
 <%
     }
 %>
-
-
-    <label>Reservation Number:</label><br>
-    <input type="text" name="reservationNo" required><br><br>
-
-    <button type="submit">Search</button>
-
-</form>
 
 </body>
 </html>

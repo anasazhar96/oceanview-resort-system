@@ -6,44 +6,73 @@ import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
-import com.oceanview.service.ReservationService;
+import com.oceanview.dao.ReservationDAO;
+import com.oceanview.dao.GuestDAO;
+import com.oceanview.model.Guest;
 import com.oceanview.model.Reservation;
+import com.oceanview.service.ReservationService;
 
 @WebServlet("/addReservation")
 public class AddReservationServlet extends HttpServlet {
-	
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String reservationNo = request.getParameter("reservationNo");
-        String guestName = request.getParameter("guestName");
-        String address = request.getParameter("address");
-        String contactNumber = request.getParameter("contactNumber");
-        String roomType = request.getParameter("roomType");
-        Date checkIn = Date.valueOf(request.getParameter("checkIn"));
-        Date checkOut = Date.valueOf(request.getParameter("checkOut"));
+        try {
 
-        Reservation reservation = new Reservation();
-        reservation.setReservationNo(reservationNo);
-        reservation.setGuestName(guestName);
-        reservation.setAddress(address);
-        reservation.setContactNumber(contactNumber);
-        reservation.setRoomType(roomType);
-        reservation.setCheckIn(checkIn);
-        reservation.setCheckOut(checkOut);
+        	ReservationDAO reservationDAO = new ReservationDAO();
+        	String reservationNo = reservationDAO.generateReservationNumber();
+            String guestName = request.getParameter("guestName");
+            String address = request.getParameter("address");
+            String contactNumber = request.getParameter("contactNumber");
+            String roomType = request.getParameter("roomType");
 
-        ReservationService service = new ReservationService();
+            Date checkIn = Date.valueOf(request.getParameter("checkIn"));
+            Date checkOut = Date.valueOf(request.getParameter("checkOut"));
 
-        if (service.addReservation(reservation)) {
-            response.sendRedirect("jsp/dashboard.jsp?success=true");
-        } else {
+//       Create Guest
+
+            Guest guest = new Guest();
+            guest.setGuestName(guestName);
+            guest.setAddress(address);
+            guest.setContactNumber(contactNumber);
+
+            GuestDAO guestDAO = new GuestDAO();
+            int guestId = guestDAO.addGuest(guest);
+
+            if (guestId <= 0) {
+                response.sendRedirect("jsp/dashboard.jsp?error=true");
+                return;
+            }
+
+
+//               Create Reservation
+          
+
+            Reservation reservation = new Reservation();
+            reservation.setReservationNo(reservationNo);
+            reservation.setGuestId(guestId);
+            reservation.setRoomType(roomType);
+            reservation.setCheckIn(checkIn);
+            reservation.setCheckOut(checkOut);
+
+            ReservationService service = new ReservationService();
+
+            if (service.addReservation(reservation)) {
+
+                request.setAttribute("successMessage", "Reservation created successfully!");
+                request.setAttribute("reservationNo", reservationNo);
+
+                request.getRequestDispatcher("/jsp/dashboard.jsp").forward(request, response);
+
+            } else {
+                response.sendRedirect("jsp/dashboard.jsp?error=true");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
             response.sendRedirect("jsp/dashboard.jsp?error=true");
         }
     }

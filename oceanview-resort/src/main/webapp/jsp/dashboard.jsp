@@ -42,9 +42,9 @@ if ("true".equals(error)) {
 <ul>
 <li><a href="<%= request.getContextPath() %>/jsp/addReservation.jsp">Add Reservation</a></li>
 <li><a href="<%= request.getContextPath() %>/jsp/viewReservation.jsp"> View Reservation</a></li>
-<li><a href="#">Calculate Bill</a></li>
+<li><a href="<%= request.getContextPath() %>/jsp/calculateBill.jsp">Calculate Bill</a></li>
 <li><a href="#">Help</a></li>
-<li><a href="#">Exit System</a></li>	
+<li><a href="<%= request.getContextPath() %>/logout">Logout</a></li>	
 </ul>
 
 </body>

@@ -8,6 +8,8 @@
 </head>
 
 <body>
+
+
 <%
     if(session.getAttribute("user") == null){
         response.sendRedirect(request.getContextPath() + "/login");
@@ -19,7 +21,7 @@
 <h3>Reservation System Menu</h3>
 
 <ul>
-<li><a href="#">Add Reservation</a></li>
+<li><a href="<%= request.getContextPath() %>/jsp/addReservation.jsp">Add Reservation</a></li>
 <li><a href="#">View Reservation</a></li>
 <li><a href="#">Calculate Bill</a></li>
 <li><a href="#">Help</a></li>

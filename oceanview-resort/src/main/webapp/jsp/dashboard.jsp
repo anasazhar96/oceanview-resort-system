@@ -13,9 +13,11 @@
 </head>
 <body>
 
+<div class="container">
 <%
     String success = request.getParameter("success");
     String error = request.getParameter("error");
+    String resNo = request.getParameter("resNo");
 %>
 
 <%
@@ -29,7 +31,7 @@
     if ("true".equals(success)) {
 %>
     <script>
-        alert("Reservation confirmed successfully!");
+    	alert("Reservation created successfully! Reservation Number: <%= resNo %>");
     </script>
 <%
     }
@@ -49,14 +51,15 @@
 
 <h3>Reservation System Menu</h3>
 
-<ul>
+<ul class="menu">
     <li><a href="<%= request.getContextPath() %>/jsp/addReservation.jsp">Add Reservation</a></li>
     <li><a href="<%= request.getContextPath() %>/jsp/viewReservation.jsp">View Reservation</a></li>
     <li><a href="<%= request.getContextPath() %>/jsp/calculateBill.jsp">Calculate Bill</a></li>
     <li><a href="<%= request.getContextPath() %>/viewAllReservations">View All Reservations</a></li>
-    <li><a href="help.jsp">Help</a></li>
+    <li><a href="<%= request.getContextPath() %>/jsp/help.jsp">Help</a></li>
     <li><a href="<%= request.getContextPath() %>/logout">Logout</a></li>
 </ul>
 
+</div>
 </body>
 </html>

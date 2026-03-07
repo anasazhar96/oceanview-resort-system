@@ -6,8 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>All Reservations</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
+
+<div class="wide-container">
 
 <h2>All Reservations</h2>
 
@@ -54,6 +57,8 @@ if (reservations != null && !reservations.isEmpty()) {
 
 <br>
 <a href="<%= request.getContextPath() %>/jsp/dashboard.jsp">Back to Dashboard</a>
+
+</div>
 
 </body>
 </html>

@@ -6,8 +6,9 @@ import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import com.oceanview.dao.ReservationDAO;
+
 import com.oceanview.dao.GuestDAO;
+import com.oceanview.dao.ReservationDAO;
 import com.oceanview.model.Guest;
 import com.oceanview.model.Reservation;
 import com.oceanview.service.ReservationService;
@@ -22,8 +23,9 @@ public class AddReservationServlet extends HttpServlet {
 
         try {
 
-        	ReservationDAO reservationDAO = new ReservationDAO();
-        	String reservationNo = reservationDAO.generateReservationNumber();
+            ReservationDAO reservationDAO = new ReservationDAO();
+            String reservationNo = reservationDAO.generateReservationNumber();
+
             String guestName = request.getParameter("guestName");
             String address = request.getParameter("address");
             String contactNumber = request.getParameter("contactNumber");
@@ -31,8 +33,6 @@ public class AddReservationServlet extends HttpServlet {
 
             Date checkIn = Date.valueOf(request.getParameter("checkIn"));
             Date checkOut = Date.valueOf(request.getParameter("checkOut"));
-
-//       Create Guest
 
             Guest guest = new Guest();
             guest.setGuestName(guestName);
@@ -47,10 +47,6 @@ public class AddReservationServlet extends HttpServlet {
                 return;
             }
 
-
-//               Create Reservation
-          
-
             Reservation reservation = new Reservation();
             reservation.setReservationNo(reservationNo);
             reservation.setGuestId(guestId);
@@ -61,12 +57,7 @@ public class AddReservationServlet extends HttpServlet {
             ReservationService service = new ReservationService();
 
             if (service.addReservation(reservation)) {
-
-                request.setAttribute("successMessage", "Reservation created successfully!");
-                request.setAttribute("reservationNo", reservationNo);
-
-                request.getRequestDispatcher("/jsp/dashboard.jsp").forward(request, response);
-
+                response.sendRedirect("jsp/dashboard.jsp?success=true&resNo=" + reservationNo);
             } else {
                 response.sendRedirect("jsp/dashboard.jsp?error=true");
             }

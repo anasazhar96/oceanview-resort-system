@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Help - Ocean View Resort</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
+
+<div class="container">
 
 <h2>Ocean View Resort Reservation System - Help</h2>
 
@@ -44,8 +47,17 @@
 </ol>
 
 <br>
+<h3>Room Rates</h3>
 
-<a href="dashboard.jsp">Back to Dashboard</a>
+<ul>
+    <li>Standard Room – Rs. 5000 per night</li>
+    <li>Deluxe Room – Rs. 8000 per night</li>
+    <li>Suite Room – Rs. 12000 per night</li>
+</ul>
+
+<a class="back-link" href="<%= request.getContextPath() %>/jsp/dashboard.jsp">Back to Dashboard</a>
+
+</div>
 
 </body>
 </html>

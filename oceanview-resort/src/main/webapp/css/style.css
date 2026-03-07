@@ -7,29 +7,45 @@ body {
 }
 
 .container {
-    width: 85%;
+    width: 90%;
+    max-width: 520px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.wide-container {
+    width: 90%;
     max-width: 900px;
     margin: 40px auto;
     background: #ffffff;
-    padding: 30px;
+    padding: 25px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
+
 h1, h2, h3 {
     color: #1a5bb8;
     margin-top: 0;
+    text-align: center;
 }
+
 
 form {
     margin-top: 20px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-label {
+llabel {
     font-weight: bold;
     display: block;
-    margin-top: 12px;
-    margin-bottom: 6px;
+    margin-top: 4px;
+    margin-bottom: 2px;
+    font-size: 14px;
 }
 
 input[type="text"],
@@ -38,12 +54,13 @@ input[type="date"],
 textarea,
 select {
     width: 100%;
-    padding: 10px;
+    max-width: 420px;
+    padding: 6px 8px;
     border: 1px solid #dddddd;
-    border-radius: 6px;
+    border-radius: 5px;
     box-sizing: border-box;
-    margin-bottom: 12px;
-    font-size: 14px;
+    margin-bottom: 5px;
+    font-size: 13px;
 }
 
 textarea {
@@ -80,6 +97,7 @@ ul.menu {
     list-style: none;
     padding: 0;
     margin: 20px 0;
+    text-align: center;
 }
 
 ul.menu li {
@@ -90,9 +108,11 @@ ul.menu li a {
     display: inline-block;
     background-color: #2c7be5;
     color: white;
-    padding: 10px 16px;
+    padding: 12px 20px;
     border-radius: 6px;
     text-decoration: none;
+    min-width: 220px;
+    text-align: center;
 }
 
 ul.menu li a:hover {
@@ -117,6 +137,7 @@ table th {
     background-color: #2c7be5;
     color: white;
 }
+
 
 .message-success {
     background-color: #eaf7ed;
@@ -147,4 +168,36 @@ table th {
 .back-link {
     display: inline-block;
     margin-top: 20px;
+}
+
+.login-card{
+    width: 380px;
+    margin: 120px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.login-card h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.login-card input{
+    width:100%;
+}
+
+.login-card button{
+    width:100%;
+    margin-top:10px;
+}
+
+.message-error{
+    color:#dc3545;
+    margin-bottom:15px;
+}
+
+table tr:nth-child(even) td {
+    background-color: #f5f7fb;
 }

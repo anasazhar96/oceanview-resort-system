@@ -5,8 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Ocean View resort Login</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
+
+
+<div class="login-card">
 
 <h2>Ocean View Resort Login</h2>
 
@@ -27,6 +31,8 @@ Password:
 <button type="submit">Login</button>
 
 </form>
+
+</div>
 
 </body>
 </html>

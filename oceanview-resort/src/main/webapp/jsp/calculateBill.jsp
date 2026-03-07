@@ -3,16 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Calculate Bill</title>
+<meta charset="UTF-8">
+<title>Calculate Bill</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
+
+<div class="container">
 
 <h2>Calculate Reservation Bill</h2>
 
 <form action="<%= request.getContextPath() %>/calculateBill" method="get">
     <label>Reservation Number:</label><br>
-    <input type="text" name="reservationNo" required><br><br>
+    <input type="text" name="reservationNo" placeholder="Enter reservation number (e.g. R001)" pattern="R[0-9]{3,}" title="Reservation number should be like R001" required><br><br>
 
     <button type="submit">Calculate Bill</button>
 </form>
@@ -47,6 +50,12 @@
 <%
     }
 %>
+<br><br>
 
+<a href="<%= request.getContextPath() %>/jsp/dashboard.jsp">
+<button type="button">Back to Dashboard</button>
+</a>
+
+</div>>
 </body>
 </html>
